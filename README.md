@@ -21,8 +21,8 @@ Setting | Type | Default | Description
 --- | --- | --- | ---
 addRandomMercsCount | int | 3 | amount of random mercs to add to roster
 randomMercQuality | int | 1 | merc quality is based on difficulty, choose a value between 1 and 5.
-roninChance | float | 0.08f | chance that a ronin is part of the starting roster
-addRoninMercs | string[] | [] | a list of ronin pilot to add, all backers and ronins under StreamingAssets\data\pilot can be chosen. e.g. `["pilot_ronin_Kraken", "pilot_backer_Chang"]`
+roninChance | float | 0.08f | chance that a random ronin is part of the starting roster
+addRoninMercs | string[] | [] | a list of ronin pilot to always add, all backers and ronins under StreamingAssets\data\pilot can be chosen. e.g. `["pilot_ronin_Kraken", "pilot_backer_Chang"]`
 
 Note:
 
