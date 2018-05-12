@@ -1,0 +1,17 @@
+{
+	"Name": "StartingMercsMod",
+	"Author": "CptMoore",
+	"Website": "https://github.com/CptMoore/StartingMercsMod",
+
+	"DependsOn": ["DynModLib"],
+	"DLL": "StartingMercsMod.dll",
+	"DLLEntryPoint": "StartingMercsMod.Control.Start",
+	
+	"Manifest": [
+		{
+			"Type": "SimGameConstants",
+			"Path": "StreamingAssets/data/GameConstants/SimGameConstants.json",
+			"ShouldMergeJSON": true
+		}
+	]
+}
