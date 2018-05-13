@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Linq;
 using HBS.Logging;
 using Harmony;
 using System.Reflection;
@@ -37,17 +38,6 @@ namespace StartingMercsMod
             mod.Logger.Log("Loaded " + mod.Name);
         }
 
-        [HarmonyPatch(typeof(SimGameState), "RequestDataManagerResources")]
-        public static class SimGameStateRequestDataManagerResourcesPatch
-        {
-            public static void Prefix(SimGameState __instance)
-            {
-                settings.addRoninMercs.Do(roninId => {
-                    __instance.DataManager.RequestResource(BattleTechResourceType.PilotDef, roninId);
-                });
-            }
-        }
-
         [HarmonyPatch(typeof(SimGameState), "FirstTimeInitializeDataFromDefs")]
         public static class SimGameStateFirstTimeInitializeDataFromDefsPatch
         {
@@ -55,20 +45,23 @@ namespace StartingMercsMod
             {
                 settings.addRoninMercs.Do(roninId =>
                 {
-                    var pilotDef = __instance.DataManager.PilotDefs.Get(roninId);
-                    __instance.AddPilotToRoster(pilotDef, true);
+                    __instance.AddPilotToRoster(roninId);
                 });
 
                 if (settings.addRandomMercsCount > 0)
                 {
-                    List<PilotDef> rononPilotDefs;
+                    List<PilotDef> roninPilotDefs;
                     var pilotDefs = __instance.PilotGenerator.GeneratePilots(
-                        settings.addRandomMercsCount,
+                        settings.addRandomMercsCount*2,
                         settings.randomMercQuality,
                         settings.roninChance,
-                        out rononPilotDefs);
+                        out roninPilotDefs);
 
-                    pilotDefs.Do(pd => __instance.AddPilotToRoster(pd));
+                   var all = pilotDefs.Union(roninPilotDefs).ToList();
+                   all.Shuffle();
+                   all.Take(settings.addRandomMercsCount)
+                       .Do(pd => mod.Logger.Log("Adding pilot " + pd.Description.Id + " to roster"))
+                       .Do(pd => __instance.AddPilotToRoster(pd));
                 }
             }
         }
