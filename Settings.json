@@ -2,5 +2,7 @@
     "addRandomMercsCount": 3,
     "randomMercQuality":  1,
     "roninChance": 0.08,
-    "addRoninMercs": []
+    "addRoninMercs": [],
+    "addRoninsOnSavegameLoad": false,
+	"allowMultipleRoninCopies": false
 }
