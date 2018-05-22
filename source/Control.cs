@@ -104,13 +104,12 @@ namespace StartingMercsMod
 
             var all = pilotDefs.Union(roninPilotDefs).ToList();
             all.Shuffle();
-            all.Take(settings.addRandomMercsCount)
-                .Select(pd =>
-                {
-                    mod.Logger.Log("Adding pilot " + pd.Description.Id + " to roster");
-                    sim.AddPilotToRoster(pd);
-                    return pd;
-                });
+
+            foreach (var pd in all.Take(settings.addRandomMercsCount))
+            {
+                mod.Logger.Log("Adding pilot " + pd.Description.Id + " to roster");
+                sim.AddPilotToRoster(pd);
+            }
         }
 
         public static void DumpRoster(this SimGameState sim)
