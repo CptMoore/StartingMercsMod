@@ -5,13 +5,5 @@
 
 	"DependsOn": ["DynModLib"],
 	"DLL": "StartingMercsMod.dll",
-	"DLLEntryPoint": "StartingMercsMod.Control.Start",
-	
-	"Manifest": [
-		{
-			"Type": "SimGameConstants",
-			"Path": "StreamingAssets/data/GameConstants/SimGameConstants.json",
-			"ShouldMergeJSON": true
-		}
-	]
+	"DLLEntryPoint": "StartingMercsMod.Control.Start"
 }
