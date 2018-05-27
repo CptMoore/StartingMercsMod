@@ -32,7 +32,7 @@ The lists `StartingMechWarriors` and `StartingMechWarriorPortraits` in `SimGameC
 
 ## Download
 
-Downloads can be found on [github](https://github.com/CptMoore/StartingMercs/releases).
+Downloads can be found on [github](https://github.com/CptMoore/StartingMercs/).
 
 ## Install
 
